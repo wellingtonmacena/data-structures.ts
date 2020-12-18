@@ -1,6 +1,6 @@
 import { Nodee as Node } from './Nodee'
 
-export class LinkedList {
+export class LinkedList<T> {
 
     private head: Node |any;
     private size: number;
@@ -10,7 +10,7 @@ export class LinkedList {
         this.size = 0;
     }
 
-    add(value: any, index: number) {
+    add(value: T, index: number) {
         if (index < 0)
             throw new Error("Index out of range")
 
@@ -33,7 +33,7 @@ export class LinkedList {
         }
     }
 
-    addFirstAll(value: any[]) {
+    addFirstAll(value: T[]) {
         let current: Node = new Node(null);
         let reversedValue = value.reverse();
         for (let currentIndex = 0; currentIndex < reversedValue.length; currentIndex++) {
@@ -45,7 +45,7 @@ export class LinkedList {
 
     }
 
-    addLastAll(value: any[]) {
+    addLastAll(value: T[]) {
         let current: Node = this.head
         while (current.next != null) {
             current = current.next
@@ -57,7 +57,7 @@ export class LinkedList {
         }
     }
 
-    addAllStartingAt(value: any[], index: number) {
+    addAllStartingAt(value: T[], index: number) {
         let current: Node = this.head;
 
         let nodesLedt: Node;
@@ -74,7 +74,7 @@ export class LinkedList {
         current.next = nodesLedt;
     }
 
-    addLast(value: any) {
+    addLast(value: T) {
         if (this.size == 0) {
             this.head.info = value
         }
@@ -89,7 +89,7 @@ export class LinkedList {
         this.size += 1;
     }
 
-    addFirst(value: any) {
+    addFirst(value: T) {
         if (this.size == 0) {
             this.head.info = value
         }
@@ -107,7 +107,7 @@ export class LinkedList {
         this.head = null;
     }
 
-    get(index: number): any {
+    get(index: number): T {
 
         if (index > this.size || index < 0)
             throw new Error("Index out of range")
@@ -134,11 +134,11 @@ export class LinkedList {
         return -1;
     }
 
-    getFirst() {
+    getFirst(): T {
         return this.head.info;
     }
 
-    getLast() {
+    getLast(): T {
         let current: Node = this.head;
 
         while (current.next != null) {
@@ -148,7 +148,7 @@ export class LinkedList {
         return current.info
     }
 
-    remove(value: any): boolean {
+    remove(value: T): boolean {
         let current = this.head.next;
         let ant = this.head;
         while (current != null) {
@@ -217,7 +217,7 @@ export class LinkedList {
         }
     }
 
-    toArray(): any[]{
+    toArray(): T[]{
         let array: any[] = [];
 
         let current = this.head;
