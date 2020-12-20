@@ -29,7 +29,7 @@ export class Queue<T>{
         }
     }
 
-    poll(): T  | null{ 
+    poll(): T { 
         if(!this.isEmpty())   {
             let lastElement: T =this.queue[0];
 
@@ -40,12 +40,16 @@ export class Queue<T>{
             this.size--;
             return lastElement;
         }  
-        throw null
+        throw new Error("No such element. Empty Queue")
     }
 
     show(){
         for(let index =0; index < this.size; index++){
             console.log(this.queue[index]);
         }
+    }
+
+    toArray(): T[]{       
+        return this.queue;
     }
 }

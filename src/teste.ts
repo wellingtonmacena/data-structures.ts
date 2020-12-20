@@ -1,4 +1,4 @@
-import {Queue} from './Queue/Queue'
+import {Queue} from './Queue'
 
 const queue = new Queue<number>();
 
@@ -9,14 +9,12 @@ queue.insert(3);
 // console.log(queue.peek());
 console.log('');
 console.log('');
-console.log(queue.poll());
-console.log(queue.poll());
-console.log(queue.poll());
-console.log(queue.poll());
+console.log(queue.toArray());
 
 console.log('');
 queue.show()
-
+console.log('');
+console.log(queue);
 
 
 
