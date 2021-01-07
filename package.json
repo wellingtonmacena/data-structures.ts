@@ -1,13 +1,23 @@
 {
-  "name": "data-structures.js",
+  "name": "structures-for-data.ts",
   "version": "1.0.0",
   "description": "A bunch of data structures like linked lists, stack, queue and others",
   "main": "index.js",
-  "repository": "git@github.com:wellingtonmacena/data-structures.js.git",
+  "repository": "https://github.com/wellingtonmacena/data-structures.ts",
   "author": "wellingtonmacena <wellington.macena.23@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wellingtonmacena/data-structures.ts/issues"
+  },
+  "keywords": [
+    "data structures typescript",
+    "structures",
+    "stack",
+    "queue",
+    "data structures"
+  ]
 }

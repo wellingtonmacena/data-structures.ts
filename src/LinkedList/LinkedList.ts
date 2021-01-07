@@ -10,7 +10,7 @@ export class LinkedList<T> {
         this.size = 0;
     }
 
-    add(value: T, index: number) {
+    add(value: T, index: number):void {
         if (index < 0)
             throw new Error("Index out of range")
 
@@ -33,11 +33,11 @@ export class LinkedList<T> {
         }
     }
 
-    addFirstAll(value: T[]) {
+    addFirstAll(values: T[]):void {
         let current: Node = new Node(null);
-        let reversedValue = value.reverse();
+        let reversedValue = values.reverse();
         for (let currentIndex = 0; currentIndex < reversedValue.length; currentIndex++) {
-            this.addFirst(value[currentIndex])
+            this.addFirst(values[currentIndex])
         }
 
         current.next = this.head;
@@ -45,19 +45,19 @@ export class LinkedList<T> {
 
     }
 
-    addLastAll(value: T[]) {
+    addLastAll(values: T[]):void {
         let current: Node = this.head
         while (current.next != null) {
             current = current.next
         }
 
-        for (let currentIndex = 0; currentIndex < value.length; currentIndex++) {
-            current.next = new Node(value[currentIndex]);
+        for (let currentIndex = 0; currentIndex < values.length; currentIndex++) {
+            current.next = new Node(values[currentIndex]);
             current = current.next;
         }
     }
 
-    addAllStartingAt(value: T[], index: number) {
+    addAllStartingAt(values: T[], index: number):void {
         let current: Node = this.head;
 
         let nodesLedt: Node;
@@ -66,15 +66,29 @@ export class LinkedList<T> {
         }
         nodesLedt = current.next;
 
-        for (let currentIndex = 0; currentIndex < value.length; currentIndex++) {
-            current.next = new Node(value[currentIndex]);
+        for (let currentIndex = 0; currentIndex < values.length; currentIndex++) {
+            current.next = new Node(values[currentIndex]);
             current = current.next;
         }
 
         current.next = nodesLedt;
     }
 
-    addLast(value: T) {
+    addFirst(value: T):void {
+        if (this.size == 0) {
+            this.head.info = value
+        }
+        else {
+            let firstNode: Node = new Node(value);
+            firstNode.next = this.head;
+            this.head = firstNode;
+
+        }
+
+        this.size += 1;
+    }
+
+    addLast(value: T):void {
         if (this.size == 0) {
             this.head.info = value
         }
@@ -89,21 +103,7 @@ export class LinkedList<T> {
         this.size += 1;
     }
 
-    addFirst(value: T) {
-        if (this.size == 0) {
-            this.head.info = value
-        }
-        else {
-            let firstNode: Node = new Node(value);
-            firstNode.next = this.head;
-            this.head = firstNode;
-
-        }
-
-        this.size += 1;
-    }
-
-    clear(){
+    clear():void{
         this.head = null;
     }
 
@@ -120,12 +120,12 @@ export class LinkedList<T> {
         return current.info;
     }
 
-    getIndex(info: any): number {
+    getIndex(value: any): number {
         let index: number = 0;
         let current = this.head
 
         while (current != null) {
-            if (current.info == info)
+            if (current.info == value)
                 return index;
             else
                 current = current.next;
@@ -166,15 +166,22 @@ export class LinkedList<T> {
         return false;
     }
 
-    removeFirst() {
+    removeFirst():boolean {
+        if (this.head == null || this.head.next == null)
+            return false;
+
         this.head = this.head.next;
         this.size--;
+
+        return true;
     }
 
-    removeMultiple(startIndex: number, quantity: number){
+    removeMultiple(startIndex: number, quantity: number):boolean{
         for(let index =0 ; index < quantity; index++){
             this.removeIndex(startIndex)
         }
+
+        return true;
     }
 
     removeIndex(index: number): boolean {
@@ -196,9 +203,9 @@ export class LinkedList<T> {
 
     }
 
-    removeLast() {
+    removeLast():boolean {
         if (this.head == null || this.head.next == null)
-            return;
+            return false;
 
         let current: Node = this.head;
         while (current.next.next != null) {
@@ -207,9 +214,11 @@ export class LinkedList<T> {
 
         current.next = null;
         this.size--;
+
+        return true;
     }
 
-    show() {
+    show():void {
         let current = this.head;
         while (current != null) {
             console.log(current.info);
